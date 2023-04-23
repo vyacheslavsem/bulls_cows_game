@@ -63,7 +63,8 @@ class MainWindow(QMainWindow):
         self.lbl.setStyleSheet("border-style: solid;"
                                  "border-width: 0px;"
                                  "border-color: green;"
-                                 "font-family: Courier New, monospace;")
+                                 "font-family: Courier New, monospace;"
+                                 "font-size:12px;")
         
         
         # Таблица числа, быков и коров
@@ -107,7 +108,7 @@ class MainWindow(QMainWindow):
                                BUT_SIZE_Y)
         self.ngb.clicked.connect(self.newGame)
         
-    def intToList(self):
+    def normalText(self):
         aa = self.validateNum()
         a = map(str, aa)
         a = ''.join(a)
@@ -115,7 +116,7 @@ class MainWindow(QMainWindow):
         return a
     
     def btnOK_clk(self):
-        n = self.intToList()               # Введенное число после проверки на валидность
+        n = self.normalText()               # Введенное число после проверки на валидность
 
         b = self.bulls_cows()[0]                # Быки
         c = self.bulls_cows()[1]                # Коровы
@@ -125,8 +126,8 @@ class MainWindow(QMainWindow):
         y = str(b)
         z = str(c)
         
-        a1 = self.seq
-        a = str(a1)
+        #a1 = self.seq
+        #a = str(a1)
         
         # Создание строк в таблице со значениями введенного числа, быков и коров
         
@@ -152,16 +153,17 @@ class MainWindow(QMainWindow):
         self.statusBar().showMessage("Число обновлено!")
         self.genNum() 
 
-    
+
+    # функция проверки ввода на валидность
     def validateNum(self):
-        # функция проверки ввода на валидность
+        self.statusBar().showMessage("")
         w = self.inpnum.text()
         # попытка перевсти введенное значение в int
         try:
             w = int(w)
         # если не вышло, присвоить любое другое значение
         except:
-            print('The variable is not a number')
+            #print('The variable is not a number')
             w = "Это не число"
         finally:
             if type(w) == int:
@@ -169,11 +171,11 @@ class MainWindow(QMainWindow):
                 
             
         if len(str(w)) != 4:
-            print("Только 4 цифры")
+            #print("Только 4 цифры")
             w = "Только 4 цифры"
         
         elif len(set(str(w))) != 4:
-            print("Только 4 цифры, без повторов")
+            #print("Только 4 цифры, без повторов")
             w = "Цифры без повторов"
             
         w = list(str(w))
