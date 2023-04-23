@@ -4,11 +4,9 @@ import sys
 from PyQt5.QtWidgets import QApplication,\
                             QMainWindow,\
                             QPushButton,\
-                            QLabel,\
-                            QAction,\
-                            QLineEdit,\
-                            QTableWidget, QTableWidgetItem, QWidget,\
-                            QGridLayout, QHeaderView
+                            QLabel, QLineEdit,\
+                            QTableWidget, QTableWidgetItem,\
+                            QHeaderView
                             
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -41,8 +39,6 @@ class MainWindow(QMainWindow):
         self.drawGUI()
         
     def drawGUI(self):
-        centralWidget = QWidget()
-        self.setCentralWidget(centralWidget)
         
         # Надпись БЫКИ И КОРОВЫ
         self.tlbl = QLabel("БЫКИ И КОРОВЫ", self)
@@ -108,12 +104,14 @@ class MainWindow(QMainWindow):
                                BUT_SIZE_Y)
         self.ngb.clicked.connect(self.newGame)
         
+    # перевод значений из ['1','2','3','4'] в 1234 для корректного отображения в таблице
     def normalText(self):
         aa = self.validateNum()
         a = map(str, aa)
         a = ''.join(a)
         a = str(a)
         return a
+    
     
     def btnOK_clk(self):
         n = self.normalText()               # Введенное число после проверки на валидность
